@@ -20,6 +20,7 @@ export default function SignInPage({ setAuth }) {
         }
 
         if (data.authenticated) {
+            console.log(data.user);
             localStorage.setItem("isAuth", true);
             localStorage.setItem("authUser", JSON.stringify(data.user));
             setAuth(true);

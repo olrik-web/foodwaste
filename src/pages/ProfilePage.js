@@ -25,6 +25,7 @@ export default function ProfilePage({ setAuth }) {
       mail: user.mail,
       phone: user.phone,
       image: user.image,
+      // admin: user.admin
     };
     console.log(userToUpdate);
 
