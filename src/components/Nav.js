@@ -5,7 +5,6 @@ export default function Nav() {
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem("authUser"))
   );
-  console.log(user);
   if (user.admin === "1") {
     return (
       <nav>
@@ -18,7 +17,6 @@ export default function Nav() {
   return (
     <nav>
       <NavLink to="/">Posts</NavLink>
-      {/* <NavLink to="/create">Create</NavLink> */}
       <NavLink to="/profile">Profile</NavLink>
     </nav>
   );

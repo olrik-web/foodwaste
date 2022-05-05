@@ -18,9 +18,9 @@ export default function CreatePage() {
     }
 
     return (
-        <section className="page">
-            <h1>Create New Post</h1>
-            <PostForm savePost={createPost} />
-        </section>
+      <section className="page">
+        <h1 className="text-center">Create New Post</h1>
+        <PostForm savePost={createPost} />
+      </section>
     );
 }

@@ -1,30 +1,34 @@
 import React, { useState, useEffect } from "react";
-import placerholder from "../assets/img/user-placeholder.jpg";
+import placeholder from "../assets/img/user-placeholder.jpg";
 
 export default function UserAvatar({ uid }) {
-    const [user, setUser] = useState({
-        image: placerholder,
-        name: "User's Name",
-        title: "User's Title"
-    });
-    const url = `http://localhost:3000/users/?id=${uid}`;
+  const [user, setUser] = useState({
+    name: "User's Name",
+    street: "User's Street",
+  });
+  const url = `http://localhost:3000/users/?id=${uid}`;
 
-    useEffect(() => {
-        async function getUser() {
-            const response = await fetch(url);
-            const responseData = await response.json();
-            setUser(responseData.data[0]);
-        }
-        getUser();
-    }, [url]);
+  let image = "";
+  useEffect(() => {
+    async function getUser() {
+      const response = await fetch(url);
+      const responseData = await response.json();
+      console.log(responseData.data[0]);
+      setUser(responseData.data[0]);
+    }
+    getUser();
+  }, [url]);
 
-    return (
-        <div className="avatar">
-            <img src={user.image || placerholder} alt={user.id} />
-            <span>
-                <h3>{user.name}</h3>
-                <p>{user.title}</p>
-            </span>
-        </div>
-    );
+  if (user.image != null) {
+    image = require(`../assets/img/${user.image}`);
+  }
+  return (
+    <div className="avatar">
+      <img src={image || placeholder} alt={user.id} />
+      <span>
+        <h3>{user.name}</h3>
+        <p>{user.street}</p>
+      </span>
+    </div>
+  );
 }

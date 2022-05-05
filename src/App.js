@@ -7,34 +7,35 @@ import UpdatePage from "./pages/UpdatePage";
 import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
 import ProfilePage from "./pages/ProfilePage";
+import DetailsPage from "./pages/DetailsPage";
 
 export default function App() {
-    const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth")); // default value comes from localStorage
+  const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth")); // default value comes from localStorage
 
-    // variable holding all private routes including the nav bar
-    const privateRoutes = (
-        <>
-            <Nav />
-            <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/create" element={<CreatePage />} />
-                <Route path="/posts/:postId" element={<UpdatePage />} />
-                <Route path="/profile" element={<ProfilePage setAuth={setIsAuth} />} />
-                <Route path="*" element={<Navigate to="/" />} />
-            </Routes>
-        </>
-    );
+  // variable holding all private routes including the nav bar
+  const privateRoutes = (
+    <>
+      <Nav />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/create" element={<CreatePage />} />
+        <Route path="/posts/:postId" element={<DetailsPage />} />
+        <Route path="/profile" element={<ProfilePage setAuth={setIsAuth} />} />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </>
+  );
 
-    // variable holding all public routes without nav bar
-    const publicRoutes = (
-        <Routes>
-            <Route path="/sign-in" element={<SignInPage setAuth={setIsAuth} />} />
-            <Route path="/sign-up" element={<SignUpPage setAuth={setIsAuth} />} />
-            <Route path="*" element={<Navigate to="/sign-in" />} />
-        </Routes>
-    );
+  // variable holding all public routes without nav bar
+  const publicRoutes = (
+    <Routes>
+      <Route path="/sign-in" element={<SignInPage setAuth={setIsAuth} />} />
+      <Route path="/sign-up" element={<SignUpPage setAuth={setIsAuth} />} />
+      <Route path="*" element={<Navigate to="/sign-in" />} />
+    </Routes>
+  );
 
-    // if user is authenticated, show privateRoutes, else show publicRoutes
-    // also, display or display not the <Loader/> based on showLoader state
-    return <main>{isAuth ? privateRoutes : publicRoutes}</main>;
+  // if user is authenticated, show privateRoutes, else show publicRoutes
+  // also, display or display not the <Loader/> based on showLoader state
+  return <main>{isAuth ? privateRoutes : publicRoutes}</main>;
 }

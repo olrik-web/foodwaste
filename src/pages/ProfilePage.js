@@ -71,7 +71,7 @@ export default function ProfilePage({ setAuth }) {
 
   return (
     <section className="page">
-      <h1>Profile</h1>
+      <h1 className="text-center">Profile</h1>
       <form onSubmit={handleSubmit}>
         <label>
           Name

@@ -4,20 +4,20 @@ import UserAvatar from "./UserAvatar";
 
 export default function PostCard({ post }) {
     const navigate = useNavigate();
-
+    const image = require(`../assets/img/${post.image}`);
     /**
      * handleClick is called when user clicks on the Article (PostCard)
      */
     function handleClick() {
         navigate(`posts/${post.id}`);
     }
-
+    
     return (
-        <article onClick={handleClick}>
-            <UserAvatar uid={post.uid} />
-            <img src={post.image} alt={post.title} />
-            <h2>{post.title}</h2>
-            <p>{post.body}</p>
-        </article>
+      <article onClick={handleClick}>
+        <UserAvatar uid={post.uid} />
+        <img src={image} alt={post.title} />
+        <h2>{post.title}</h2>
+        <p>{post.body}</p>
+      </article>
     );
 }

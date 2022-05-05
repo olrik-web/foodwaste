@@ -34,19 +34,27 @@ export default function SignUpPage({ setAuth }) {
     }
 
     return (
-        <section className="page">
-            <h1>Sign Up</h1>
-            <form onSubmit={handleSignUp}>
-                <input type="text" name="name" placeholder="Type your name" />
-                <input type="email" name="mail" placeholder="Type your mail" />
-                <input type="password" name="password" placeholder="Type your password" />
-                <input type="password" name="passwordCheck" placeholder="Type your password again" />
-                <p className="text-error">{errorMessage}</p>
-                <button>Sign Up</button>
-            </form>
-            <p className="text-center">
-                Already have an account? <Link to="/sign-in">Sign In</Link>
-            </p>
-        </section>
+      <section className="page">
+        <h1 className="text-center">Sign Up</h1>
+        <form onSubmit={handleSignUp}>
+          <input type="text" name="name" placeholder="Type your name" />
+          <input type="email" name="mail" placeholder="Type your mail" />
+          <input
+            type="password"
+            name="password"
+            placeholder="Type your password"
+          />
+          <input
+            type="password"
+            name="passwordCheck"
+            placeholder="Type your password again"
+          />
+          <p className="text-error">{errorMessage}</p>
+          <button>Sign Up</button>
+        </form>
+        <p className="text-center">
+          Already have an account? <Link to="/sign-in">Sign In</Link>
+        </p>
+      </section>
     );
 }
