@@ -7,6 +7,8 @@ import UpdatePage from "./pages/UpdatePage";
 import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
 import ProfilePage from "./pages/ProfilePage";
+import FavoritePage from "./pages/FavoritePage";
+import PostsPage from "./pages/PostsPage";
 
 export default function App() {
     const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth")); // default value comes from localStorage
@@ -20,6 +22,8 @@ export default function App() {
                 <Route path="/create" element={<CreatePage />} />
                 <Route path="/posts/:postId" element={<UpdatePage />} />
                 <Route path="/profile" element={<ProfilePage setAuth={setIsAuth} />} />
+                <Route path="/favorite" element={<FavoritePage/>} />
+                <Route path="/posts" element={<PostsPage/>} />
                 <Route path="*" element={<Navigate to="/" />} />
             </Routes>
         </>

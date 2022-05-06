@@ -1,7 +1,7 @@
 /* ---------- root variables ---------- */
 :root {
-    --green: rgb(38, 76, 89);
-    --light-green: rgb(172, 198, 201);
+    --green: #fdaf28;
+    --light-green: #FAE6B1;
     --light-grey: #f1f1f4;
     --text-color-light: #f1f1f1;
     --text-color-dark: #333;
@@ -16,7 +16,10 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    margin-top: 20px;
 }
+
+
 
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
@@ -94,6 +97,8 @@ nav {
     left: 0;
     right: 0;
     text-align: center;
+    
+    
 }
 
 /* Style the links inside the navigation bar */
@@ -101,11 +106,27 @@ nav a {
     display: inline-block;
     color: var(--text-color-light);
     text-align: center;
-    padding: 20px 16px;
+    padding: 9px 16px;
     text-decoration: none;
     letter-spacing: 0.1em;
     text-transform: uppercase;
+    
+
+    
 }
+
+nav a svg {
+
+    font-size: 30px;
+  
+}
+
+nav a p {
+    color: white;
+    font-size: 10px;
+}
+
+
 
 /* Change the color of links on hover */
 nav a:hover {
