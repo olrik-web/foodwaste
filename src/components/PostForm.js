@@ -54,25 +54,63 @@ export default function PostForm({ savePost, post }) {
             // if not, set errorMessage state.
             setErrorMessage("Please, fill in all fields.");
         }
+
+        
     }
 
+    const [value, setValue] = useState("meals");
+
+    const handleChange = (event) => {
+      setValue(event.target.value);
+    };
+
     return (
-        <form onSubmit={handleSubmit}>
-            <label>
-                Title
-                <input type="text" value={title || ""} placeholder="Type a title" onChange={e => setTitle(e.target.value)} />
-            </label>
-            <label>
-                Body
-                <input type="text" value={body || ""} placeholder="Type a body text" onChange={e => setBody(e.target.value)} />
-            </label>
-            <label>
-                Image
-                <input type="file" className="file-input" accept="image/*" onChange={handleImageChange} />
-                <img className="image-preview" src={image || imgPlaceholder} alt="Choose" onError={event => (event.target.src = imgPlaceholder)} />
-            </label>
-            <p className="text-error">{errorMessage}</p>
-            <button type="submit">Save</button>
-        </form>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Title
+          <input
+            type="text"
+            value={title || ""}
+            placeholder="Type a title"
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </label>
+        <label>
+          Body
+          <input
+            type="text"
+            value={body || ""}
+            placeholder="Type a body text"
+            onChange={(e) => setBody(e.target.value)}
+          />
+        </label>
+        <label>
+          Category:
+          <select value={value} onChange={handleChange}>
+            <option value="meals">Meals</option>
+            <option value="bakery">Bakery</option>
+            <option value="vegetables">Vegetables</option>
+            <option value="dairy">Dairy</option>
+            <option value="meat">Meat</option>
+          </select>
+        </label>
+        <label>
+          Image
+          <input
+            type="file"
+            className="file-input"
+            accept="image/*"
+            onChange={handleImageChange}
+          />
+          <img
+            className="image-preview"
+            src={image || imgPlaceholder}
+            alt="Choose"
+            onError={(event) => (event.target.src = imgPlaceholder)}
+          />
+        </label>
+        <p className="text-error">{errorMessage}</p>
+        <button type="submit">Save</button>
+      </form>
     );
 }

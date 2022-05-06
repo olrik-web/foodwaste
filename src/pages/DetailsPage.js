@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import PostForm from "../components/PostForm";
 import UserAvatar from "../components/UserAvatar";
 
 export default function UpdatePage() {
   const [post, setPost] = useState([]);
   const params = useParams();
-  //   const navigate = useNavigate();
-  //   navigate("/");
+  const navigate = useNavigate();
+
+   const user = JSON.parse(localStorage.getItem("authUser"));
+
   const url = `http://localhost:3000/posts/?id=${params.postId}`;
 
   useEffect(() => {
@@ -19,10 +20,32 @@ export default function UpdatePage() {
     }
     getPost();
   }, [url]);
-  console.log(post.image);
+
+  function handleClick() {
+    navigate(`/update/${post.id}`);
+  }
+
   let image = "";
   if (post.image != null) {
     image = require(`../assets/img/${post.image}`);
+  }
+
+  if (user.admin === "1" && user.id === post.uid) {
+    return (
+    <section className="page">
+      <div className="detailsImg">
+        <img className="detailsImage" src={image} alt={post.title} />
+      </div>
+      <div className="detailsPage">
+        <div className="detailsUser">
+          <UserAvatar uid={post.uid} />
+        </div>
+        <h1 className="text-center">{post.title}</h1>
+        <p>{post.body}</p>
+        <button onClick={handleClick}>Edit/delete post</button>
+      </div>
+    </section>
+    );
   }
 
   if (!post.uid) {
@@ -30,10 +53,16 @@ export default function UpdatePage() {
   }
   return (
     <section className="page">
-      <img src={image} alt={post.title} />
-      <UserAvatar uid={post.uid} />
-      <h1 className="text-center">{post.title}</h1>
-      <p>{post.body}</p>
+      <div className="detailsImg">
+        <img className="detailsImage" src={image} alt={post.title} />
+      </div>
+      <div className="detailsPage">
+        <div className="detailsUser">
+          <UserAvatar uid={post.uid} />
+        </div>
+        <h1 className="text-center">{post.title}</h1>
+        <p>{post.body}</p>
+      </div>
     </section>
   );
 }

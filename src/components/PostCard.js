@@ -9,7 +9,7 @@ export default function PostCard({ post }) {
      * handleClick is called when user clicks on the Article (PostCard)
      */
     function handleClick() {
-        navigate(`posts/${post.id}`);
+        navigate(`../posts/${post.id}`);
     }
     
     return (

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 export default function Nav() {
-  const [user, setUser] = useState(
+  const [user] = useState(
     JSON.parse(localStorage.getItem("authUser"))
   );
   if (user.admin === "1") {
