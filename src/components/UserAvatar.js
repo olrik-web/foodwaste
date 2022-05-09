@@ -13,7 +13,6 @@ export default function UserAvatar({ uid }) {
     async function getUser() {
       const response = await fetch(url);
       const responseData = await response.json();
-      console.log(responseData.data[0]);
       setUser(responseData.data[0]);
     }
     getUser();
