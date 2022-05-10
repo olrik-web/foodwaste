@@ -206,7 +206,7 @@ button {
   padding: 0.5em 1em;
   font-size: 0.8em;
   display: block;
-  margin: 1em auto 0;
+  margin: 0.6em auto 0;
 }
 
 button.btn-outline {
@@ -337,17 +337,24 @@ article .avatar img {
   width: 80%;
 }
 
-.buttonsContainer {
+.detailsContainer {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  height: 100%;
 }
 
 .buttonsLeft {
-  /* text-align: left; */
+  display: inline-block;
+  margin-top: auto;
+  justify-content: space-between;
   padding: 0px 0 8px 0;
 }
 
-.buttonsRight a {
+.postButtons {
+  display: inline-block;
+}
+
+.buttonsLeft a {
   font-size: 28px;
+  float: right;
 }

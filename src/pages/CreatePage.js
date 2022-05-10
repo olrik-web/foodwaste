@@ -8,9 +8,8 @@ export default function CreatePage() {
 
     async function createPost(newPost) {
         newPost.uid = user.id;
-
         const url = "http://localhost:3000/posts/";
-        await fetch(url, {
+        let response = await fetch(url, {
             method: "POST",
             body: JSON.stringify(newPost)
         });

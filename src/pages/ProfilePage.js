@@ -8,6 +8,11 @@ export default function ProfilePage({ setAuth }) {
     JSON.parse(localStorage.getItem("authUser"))
   );
   const navigate = useNavigate();
+  let image;
+  // User image varchar(255) + date("Ymd_His_") = 271
+  if (user.image.length < 280) {
+    image = require(`../assets/img/${user.image}`);
+  }
 
   function handleChange(event) {
     const name = event.target.name;
@@ -21,20 +26,20 @@ export default function ProfilePage({ setAuth }) {
     const userToUpdate = {
       id: user.id,
       name: user.name,
-      title: user.title,
       mail: user.mail,
       phone: user.phone,
       image: user.image,
-      // admin: user.admin
+      street: user.street,
+      zipcode: user.zipcode,
+      city: user.city,
     };
-    console.log(userToUpdate);
 
     const response = await fetch(url, {
       method: "PUT",
       body: JSON.stringify(userToUpdate),
     });
-    const responseObject = await response.json();
 
+    const responseObject = await response.json();
     console.log(responseObject);
 
     if (responseObject.status === "success") {
@@ -55,14 +60,20 @@ export default function ProfilePage({ setAuth }) {
    */
   function handleImageChange(event) {
     const file = event.target.files[0];
+
     if (file.size < 500000) {
       // image file size must be below 0,5MB
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        setUser((prevUser) => ({ ...prevUser, image: event.target.result }));
-      };
-      reader.readAsDataURL(file);
-      setErrorMessage(""); // reset errorMessage state
+
+      if (file.type === "image/png" || file.type === "image/jpeg") {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          setUser((prevUser) => ({ ...prevUser, image: event.target.result }));
+        };
+        reader.readAsDataURL(file);
+        setErrorMessage(""); // reset errorMessage state
+      } else {
+        setErrorMessage("The image file type is not supported!");
+      }
     } else {
       // if not below 0.5MB display an error message using the errorMessage state
       setErrorMessage("The image file is too big!");
@@ -104,13 +115,33 @@ export default function ProfilePage({ setAuth }) {
           />
         </label>
         <label>
-          Title
+          Street
           <input
             type="text"
-            value={user.title || ""}
+            value={user.street || ""}
             onChange={handleChange}
-            name="title"
-            placeholder="Type your title"
+            name="street"
+            placeholder="Type your street"
+          />
+        </label>
+        <label>
+          Zip code
+          <input
+            type="text"
+            value={user.zipcode || ""}
+            onChange={handleChange}
+            name="zipcode"
+            placeholder="Type your zip code"
+          />
+        </label>
+        <label>
+          City
+          <input
+            type="text"
+            value={user.city || ""}
+            onChange={handleChange}
+            name="city"
+            placeholder="Type your city"
           />
         </label>
         <label>
@@ -123,7 +154,7 @@ export default function ProfilePage({ setAuth }) {
           />
           <img
             className="image-preview"
-            src={user.image || imgPlaceholder}
+            src={image || user.image || imgPlaceholder}
             alt="Choose"
             onError={(event) => (event.target.src = imgPlaceholder)}
           />

@@ -39,6 +39,8 @@ export default function PostForm({ savePost, post }) {
 
     function handleSubmit(event) {
         event.preventDefault();
+
+        //TODO: Tjek om body er mindre end 255 characters, som der må ligge på databasen
         const formData = {
             // create a new objebt to hold the value from states / input fields
             title: title,

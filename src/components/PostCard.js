@@ -71,15 +71,15 @@ export default function PostCard({ post }) {
 
   return (
     <article onClick={handleClick}>
-      <UserAvatar uid={post.uid} />
-      <img src={image} alt={post.title} />
-      <h2>{post.title}</h2>
-      <p>{post.body}</p>
-      <div className="buttonsContainer">
+      <div className="detailsContainer">
+        <div>
+          <UserAvatar uid={post.uid} />
+          <img src={image} alt={post.title} />
+          <h2>{post.title}</h2>
+          <p>{post.body}</p>
+        </div>
         <div className="buttonsLeft">
           <button className="postButtons">Buy</button>
-        </div>
-        <div className="buttonsRight">
           <a
             onClick={(e) => {
               e.stopPropagation();
@@ -95,6 +95,7 @@ export default function PostCard({ post }) {
             )}
           </a>
         </div>
+        {/* <div className="buttonsRight"></div> */}
       </div>
     </article>
   );

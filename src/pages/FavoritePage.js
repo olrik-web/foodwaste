@@ -13,7 +13,6 @@ export default function HomePage() {
       const url = `http://localhost:3000/favorites?uid=${user.id}`;
       const response = await fetch(url);
       const responseData = await response.json();
-      console.log(responseData);
       setFavorites(responseData.data);
     }
     getFavorites();
